@@ -1,10 +1,12 @@
 import cv2
 import numpy as np
 import tensorflow as tf
+import keras
 
-keras = tf.keras
+# keras = tf.keras
 load_model = keras.models.load_model
 Model = keras.models.Model
+
 
 """
 This is a Singleton class which bears the ml model in memory
@@ -13,6 +15,7 @@ model is used to extract handshape
 import os.path
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+new_model = load_model(os.path.join(BASE, 'cnn_model.keras'))
 
 class HandShapeFeatureExtractor:
     __single = None
@@ -25,7 +28,7 @@ class HandShapeFeatureExtractor:
 
     def __init__(self):
         if HandShapeFeatureExtractor.__single is None:
-            real_model = load_model(os.path.join(BASE, 'cnn_model.h5'))
+            real_model = load_model(os.path.join(BASE, 'cnn_model.keras'))
             self.model = real_model
             HandShapeFeatureExtractor.__single = self
 
