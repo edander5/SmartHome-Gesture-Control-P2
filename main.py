@@ -54,8 +54,8 @@ for frames in frame_files:
 # Extract the middle frame of each gesture video
 
 # Make sure when i turn into autograder its just "test"
-test_folder = os.path.join("Test","TestData")
-# test_folder = "test"
+# test_folder = os.path.join("Test","TestData")
+test_folder = "test"
 test_frames_folder = "test_frames"
 test_files = sorted(os.listdir(test_folder))
 
@@ -105,9 +105,6 @@ gesture_labels = {
 
 training_matrix = np.vstack(training_vectors)
 
-# print(np.argmin(distance))
-# print(train_files[36])
-
 for vector in test_vectors:
     
     distance = cosine_distances(vector, training_matrix)
@@ -119,7 +116,6 @@ for vector in test_vectors:
     label = gesture_labels[gesture_name]    
     predictions.append(label)
     
-# print(predictions)
 with open('Results.csv', 'w', newline='') as results:
     wr = csv.writer(results)
     for label in predictions:
